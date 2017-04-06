@@ -1,4 +1,4 @@
-# Logs
+﻿# Logs
 logs
 *.log
 
@@ -34,3 +34,4 @@ dist
 
 # Mac files
 .DS_Store
+/.vs
