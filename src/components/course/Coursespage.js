@@ -1,4 +1,4 @@
-import React,{PropTypes} from 'react';
+﻿import React,{PropTypes} from 'react';
 import {connect} from 'react-redux';
 import * as courseAction from '../../actions/courseActions';
 
@@ -28,7 +28,7 @@ class CoursesPage extends React.Component{
 
     onClickSave(event)
     {
-        this.props.dispatch(courseAction.createCourse(this.state.course));
+        this.props.createCourse(this.state.course);
     }
 
     render()
@@ -58,12 +58,22 @@ class CoursesPage extends React.Component{
         return { 
             courses : state.courses // state.courses --> from reducers folder -> index.js courses
         };
-    }
+ }
+
+ function mapDispatchToProps(dispatch)
+ {
+     return {
+         createCourse: course => dispatch(courseAction.createCourse(course))
+     };
+ }
 
 CoursesPage.propTypes={
-    dispatch:PropTypes.func.isRequired,
-    courses:PropTypes.array.isRequired
+    //dispatch:PropTypes.func.isRequired,
+    courses: PropTypes.array.isRequired,
+    createCourse: PropTypes.func.isRequired
 };
 
+
+
 //connect(mapStateToProps,mapDispatchToProps)
-export default connect(mapStateToProps)(CoursesPage); // 2nd parameter is optional, and default param is dispatch()
+export default connect(mapStateToProps, mapDispatchToProps)(CoursesPage); // 2nd parameter is optional, and default param is dispatch()
